@@ -97,7 +97,7 @@ function transferFS()
       if fs.isDir(path..v) and v ~= "disk" and v ~= "rom" and v ~= "protected" then
         walk(path..v..'/')
       elseif not fs.isDir(path..v) then
-        if v ~= "idisk.lua" then
+        if not string.find(v, "idisk") then
           print("  > Copy "..path..v.." to disk/install/copy/"..path..v)
           srcfile = fs.open(path..v, "rb")
           dstfile = fs.open("disk/install/copy/"..path..v, "wb")
