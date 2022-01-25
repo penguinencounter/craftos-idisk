@@ -43,7 +43,33 @@ function transferFS()
 end
 
 function checkMeta()
-  -- WIP
+  print("Checking install environment...")
+  metafile = fs.open("disk/idiskmeta", "r")
+  one = metafile.readLine()
+  two = metafile.readLine()
+  metafile.close()
+  currentAdv = term.isColor()
+  currentTurt = turtle and true or false
+  function parseMetaLine(text)
+    lKey = nil
+    lValue = nil
+    for i in string.gmatch(text, "%S+") do
+      if lKey == nil then lKey = i else lValue = i end
+    end
+    return lKey, lValue
+  end
+  fileAdv = nil
+  fileTurt = nil
+  key1, val1 = parseMetaLine(one)
+  val1 = val1 == "true"
+  if key1 == "advanced" then
+    fileAdv = val1
+  end
+  key2, val2 = parseMetaLine(one)
+  val2 = val2 == "true"
+  if key2 == "advanced" then
+    fileAdv = val1
+  end
 end
 
 function main()
