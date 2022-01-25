@@ -32,6 +32,7 @@ function promptWipeDisk()
         for i, v in ipairs(fs.list(path)) do
           if fs.isDir(path..v) then
             walk(path..v..'/')
+            fs.delete(path..v)
           else
             print("  > Delete "..path..v)
             fs.delete(path..v)
